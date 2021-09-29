@@ -2,7 +2,14 @@ import express from "express";
 import {Food} from "./Dto/food";
 
 const app = express();
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+    res.header('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');
+    next();
+});
 const port = 8080; // default port to listen
+
 
 let foods = new Array<Food>();
 foods.push(new Food(21, "banane", 2.50));
