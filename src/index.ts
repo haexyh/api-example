@@ -28,13 +28,12 @@ app.listen(port, () => {
 app.post("/food", (req, res) => {
     const item: Food = req.body;
     const count = foods.length;
-    if(item.id === 0 || foods.filter(i => i.id === item.id).length > 0)
-    {
+    if (item.id === 0 || foods.filter(i => i.id === item.id).length > 0) {
         res.status(400)
         return;
     }
     foods.push(item);
-    if(count -1 === foods.length) res.status(200);
+    if (count - 1 === foods.length) res.status(200);
     else res.status(500);
     res.send(foods.find(i => i.id === item.id));
 });
@@ -45,25 +44,23 @@ app.get("/food", (req, res) => {
 
 app.get("/food/:id", (req, res) => {
     const id = parseInt(req.params.id, 10);
-    const item  = foods.find(i => i.id === id);
-    if(item != null) res.status(200)
+    const item = foods.find(i => i.id === id);
+    if (item != null) res.status(200)
     else res.status(404)
     res.send(item);
 });
 
 app.put("/food/:id", (req, res) => {
-    const id = parseInt(req.params.id, 10);
     const item: Food = req.body;
     foods = foods.filter(i => i.id);
     foods.push(item);
-    if(foods.find(i => i.id === item.id) != null) res.status(200);
+    if (foods.find(i => i.id === item.id) != null) res.status(200);
     else res.status(500);
 });
 
 app.delete("/food/:id", (req, res) => {
     const id = parseInt(req.params.id, 10);
-    const count = foods.length;
-    foods = foods.filter(i => i.id !== id) ;
-    if(foods.length + 1 === foods.length) res.status(200);
+    foods = foods.filter(i => i.id !== id);
+    if (foods.length + 1 === foods.length) res.status(200);
     else res.status(404);
 });
