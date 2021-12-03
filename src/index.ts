@@ -8,7 +8,6 @@ app.use((req, res, next) => {
 });
 const port = 8080; // default port to listen
 
-
 let foods = new Array<Food>();
 foods.push(new Food(21, "banane", 2.50));
 foods.push(new Food(23, "bratwurst", 6.70));
